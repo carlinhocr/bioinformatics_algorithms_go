@@ -26,6 +26,7 @@ func patternCount(text string, pattern string) int {
 
 func main() {
 	fmt.Println("Here to expect Bioinformatics Code in Golang")
+	// Exercise 1
 	text := "GCGCG"
 	pattern := "GCG"
 	fmt.Println(patternCount(text, pattern))
