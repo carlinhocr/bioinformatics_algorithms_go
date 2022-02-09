@@ -27,12 +27,36 @@ func patternCount(text string, pattern string) int {
 //			freqMap[pattern] += 1
 //	return freqMap
 
+func frequencyTable(text string, k int) map[string]int {
+	freqMap := make(map[string]int)
+	n := len(text)
+	for i := 0; i < (n - k); i++ {
+		pattern := text[i : i+k]
+		if _, ok := freqMap[pattern]; ok == false {
+			freqMap[pattern] = 1
+		} else {
+			freqMap[pattern]++
+		}
+	}
+	return freqMap
+}
+
 //def MaxMap(self,freqMap):
 //	maximum = 0
 //	for element in freqMap:
 //		if abs(freqMap[element]) > maximum:
 //			maximum = abs(freqMap[element])
 //	return maximum
+
+func maxMap(freqMap map[string]int) int {
+	maximum := 0
+	for _, element := range freqMap {
+		if element > maximum {
+			maximum = element
+		}
+	}
+	return maximum
+}
 
 //def BetterFrequentWords(self,text,k):
 //	frequentPatterns = []
@@ -51,4 +75,9 @@ func main() {
 	pattern := "GCG"
 	fmt.Println(patternCount(text, pattern))
 	// Exercise 2 BetterFrequentWords
+	text = "ACGTTGCATGTCGCATGATGCATGAGAGCT"
+	k := 4
+	table := frequencyTable(text, k)
+	fmt.Println(table)
+	fmt.Println(maxMap(table))
 }
